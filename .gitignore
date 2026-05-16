@@ -1,0 +1,12 @@
+# Local runtime configuration
+srcs/.env
+
+# Local secrets (keep only templates tracked)
+secrets/*
+!secrets/*.example
+!secrets/README.md
+
+# Editor and OS noise
+*.swp
+*.swo
+.DS_Store
