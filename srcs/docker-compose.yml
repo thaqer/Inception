@@ -1,6 +1,7 @@
 services:
   mariadb:
     image: mariadb:inception
+    pull_policy: never
     container_name: mariadb
     build:
       context: ./requirements/mariadb
@@ -27,6 +28,7 @@ services:
 
   wordpress:
     image: wordpress:inception
+    pull_policy: never
     container_name: wordpress
     build:
       context: ./requirements/wordpress
@@ -58,6 +60,7 @@ services:
 
   nginx:
     image: nginx:inception
+    pull_policy: never
     container_name: nginx
     build:
       context: ./requirements/nginx

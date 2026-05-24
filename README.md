@@ -9,12 +9,18 @@ Inception is a system administration project where a complete WordPress stack is
 
 The stack uses one custom bridge network and two named volumes persisted on the host under `/home/tbaniatt/data`.
 
+### Sources Included In This Project
+
+- `srcs/docker-compose.yml`: orchestration, network, volumes, secrets, restart policies.
+- `srcs/requirements/mariadb|wordpress|nginx`: one Dockerfile per mandatory service, plus each service config and startup scripts.
+- Root docs: `README.md`, `USER_DOC.md`, `DEV_DOC.md`.
+
 ### Project Design Choices
 
 - Base images: `debian:bookworm` for all mandatory services (penultimate stable Debian release).
 - One Dockerfile per service, no prebuilt service image from DockerHub.
 - Secrets are stored in local files (`secrets/*.txt`) and injected as Compose secrets.
-- Non-sensitive values are kept in `srcs/.env`.
+- Non-sensitive values are kept in `srcs/.env`; sensitive values are stored in gitignored `secrets/*.txt` files.
 
 ### Required Comparisons
 
@@ -44,7 +50,13 @@ The stack uses one custom bridge network and two named volumes persisted on the 
    - `db_password.txt`
    - `wp_admin_password.txt`
    - `wp_user_password.txt`
-3. Add local DNS mapping for `tbaniatt.42.fr` to your VM IP (or `127.0.0.1` for local-only access).
+3. Add local DNS mapping for `tbaniatt.42.fr`:
+
+```bash
+echo "127.0.0.1 tbaniatt.42.fr" | sudo tee -a /etc/hosts
+```
+
+If you browse from outside the VM, map it to the VM IP on that machine instead.
 
 ### 2. Run the project
 

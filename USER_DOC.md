@@ -20,7 +20,13 @@ This stack provides:
 
 ## Access the Website and Admin Panel
 
-1. Ensure `tbaniatt.42.fr` points to your VM IP.
+1. Ensure `tbaniatt.42.fr` resolves locally:
+
+   ```bash
+   echo "127.0.0.1 tbaniatt.42.fr" | sudo tee -a /etc/hosts
+   ```
+
+   If browser runs outside the VM, add the same mapping on that machine using the VM IP.
 2. Open `https://tbaniatt.42.fr` in a browser.
 3. Admin panel is available at:
    - `https://tbaniatt.42.fr/wp-admin`

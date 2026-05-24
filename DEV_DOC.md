@@ -13,6 +13,13 @@
 - Copy `srcs/.env.example` to `srcs/.env`.
 - Fill required non-sensitive variables in `srcs/.env`.
 - Create real secret files in `secrets/` from `*.example` templates.
+- Add local name resolution for the required domain:
+
+  ```bash
+  echo "127.0.0.1 tbaniatt.42.fr" | sudo tee -a /etc/hosts
+  ```
+
+  If testing from another machine, map `tbaniatt.42.fr` to the VM IP there.
 
 ## Build and Launch
 
@@ -33,6 +40,10 @@
   - `make ps`
 - Tail logs:
   - `make logs`
+- List volumes:
+  - `docker volume ls`
+- Inspect mandatory volumes:
+  - `docker volume inspect mariadb_data wordpress_data`
 - Remove stack + volumes:
   - `make clean`
 

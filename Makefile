@@ -9,7 +9,7 @@ all: up
 prepare:
 	@mkdir -p $(DATA_PATH)/mariadb $(DATA_PATH)/wordpress
 	@mkdir -p secrets
-	@test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE). Copy srcs/.env.example to srcs/.env and adjust values." && exit 1)
+	@test -f $(ENV_FILE) || cp srcs/.env.example $(ENV_FILE)
 	@$(MAKE) check-secrets
 
 check-secrets:
