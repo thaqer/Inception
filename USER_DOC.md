@@ -41,9 +41,11 @@ Credentials are local files in `secrets/`:
 
 Non-sensitive settings are in `srcs/.env`.
 
-To rotate credentials:
-1. Update the relevant secret file.
-2. Recreate impacted services (`make down` then `make`).
+Passwords are applied only on the first start, when the database and the site are created. Editing a secret file afterwards does not change them, and changing `db_password.txt` alone breaks the connection between WordPress and MariaDB.
+
+To change passwords:
+- **Start fresh (deletes all site content):** update the secret files, then run `make re`.
+- **Keep the content:** change a WordPress user's password in the admin panel (or with `wp user update <user> --user_pass=<new> --allow-root` inside the `wordpress` container), then put the new value in the matching secret file so the two stay in sync.
 
 ## Health and Runtime Checks
 

@@ -10,7 +10,7 @@ if [[ ! -f "/etc/nginx/ssl/${DOMAIN_NAME}.crt" || ! -f "/etc/nginx/ssl/${DOMAIN_
         -newkey rsa:2048 \
         -keyout "/etc/nginx/ssl/${DOMAIN_NAME}.key" \
         -out "/etc/nginx/ssl/${DOMAIN_NAME}.crt" \
-        -subj "/C=MA/ST=IDF/L=Paris/O=42/OU=Inception/CN=${DOMAIN_NAME}" >/dev/null 2>&1
+        -subj "/C=JO/ST=Amman/L=Amman/O=42/OU=Inception/CN=${DOMAIN_NAME}" >/dev/null 2>&1
 fi
 
 envsubst '$DOMAIN_NAME' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf

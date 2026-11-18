@@ -53,4 +53,4 @@ Mandatory persistent data is stored in Docker named volumes mapped to host direc
 - MariaDB data: `/home/tbaniatt/data/mariadb`
 - WordPress files: `/home/tbaniatt/data/wordpress`
 
-These are configured as named volumes in `srcs/docker-compose.yml` and survive container recreation unless removed explicitly.
+These are configured as named volumes in `srcs/docker-compose.yml` and survive container recreation. `make clean` removes the volumes but leaves the files in these folders; `make fclean` (and `make re`) also deletes the files, so the next start sets up a fresh database and site.

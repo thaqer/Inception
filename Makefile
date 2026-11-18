@@ -42,7 +42,10 @@ config:
 clean:
 	docker compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) down -v
 
+# The volumes store their files in $(DATA_PATH), and removing a volume does not
+# delete them. The files belong to root and mysql, so a container deletes them.
 fclean: clean
+	docker run --rm -v $(DATA_PATH):/data debian:bookworm sh -c 'rm -rf /data/mariadb /data/wordpress'
 	docker image rm -f nginx:inception wordpress:inception mariadb:inception 2>/dev/null || true
 
 re: fclean up
